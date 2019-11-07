@@ -1,3 +1,30 @@
+# General purpose CQRS proxy server
+ 
+### Glossary 
+
+`message` - Regular `POST` request with json body and `Content-Type: application/json` header. Body must be serialized object with one key as `Message Name` and one value as `Message Body`. `Message Body` is regular json object. Ex. `{ Foo: { Bar: "bar" } }`
+`client` - Anybody who connects to proxy server via socket.
+
+### Register your client
+
+Just connect to `socket.io-client` with `id` param.
+Ex. `http://{proxyIp}?id={yourId}&group={optionalGroupName}`
+
+`id` is your client unique identifier. There is no duplicates control!
+`group` is required for distinguish between clients classes (ex. IoT devices and web clients)
+
+### Send message to client
+
+Send `message` with extra `Recipient` header.
+
+
+### Get list of clients from specified group
+
+`message`: `{ GetGroupClients: { [GroupName] } }`. GroupName is optional........
+
+
+
+
 # express.ts
 
 This a very basic startup project with `Node.js`, `ES7`, `Typescript` and `express` with `socket.io`.

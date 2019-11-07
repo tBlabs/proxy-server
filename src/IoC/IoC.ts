@@ -11,16 +11,20 @@ import { Logger } from '../Services/Logger/Logger';
 import { Main } from '../Main';
 import { IStartupArgs } from '../Services/Environment/IStartupArgs';
 import { StartupArgs } from '../Services/Environment/StartupArgs';
+import { MessageBus } from '../Core/MessageBus';
+import { ClientsManager } from '../Services/DevicesManager';
 
 const IoC = new Container();
 
 try
 {
+    IoC.bind(MessageBus).toSelf().inSingletonScope();
     IoC.bind<IEnvironment>(Types.IEnvironment).to(Environment).inSingletonScope().whenTargetIsDefault();
     IoC.bind<IRunMode>(Types.IRunMode).to(RunMode).inSingletonScope().whenTargetIsDefault();
     IoC.bind<ILogger>(Types.ILogger).to(Logger).inSingletonScope().whenTargetIsDefault();
     IoC.bind<IStartupArgs>(Types.IStartupArgs).to(StartupArgs).inSingletonScope().whenTargetIsDefault();
     IoC.bind<Main>(Main).toSelf().inSingletonScope().whenTargetIsDefault();
+    IoC.bind<ClientsManager>(ClientsManager).toSelf().inSingletonScope().whenTargetIsDefault();
 }
 catch (ex)
 {
