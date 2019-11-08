@@ -126,7 +126,8 @@ export class Main
             });
         });
 
-        const port = this._env.ValueOrDefault('PORT', '5000');
+        const port = process.env.PORT;// this._env.ValueOrDefault('PORT', '5000');
+        console.log('Trying to start at port '+port);
         httpServer.listen(port, () => console.log('SERVER STARTED @ ' + port));
 
         process.on('SIGINT', () =>
