@@ -4,8 +4,6 @@ import * as express from 'express';
 import * as http from 'http';
 import * as socketIo from 'socket.io';
 import * as path from 'path';
-import { IStartupArgs } from './Services/Environment/IStartupArgs';
-import { Repeater } from './Services/Repeater/Repeater';
 import { IEnvironment } from './Services/Environment/IEnvironment';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
@@ -17,7 +15,6 @@ export class Main
 {
     constructor(
         private _messageBus: MessageBus,
-        @inject(Types.IStartupArgs) private _args: IStartupArgs,
         @inject(Types.IEnvironment) private _env: IEnvironment,
         private _devicesList: ClientsManager)
     { }
@@ -83,20 +80,15 @@ export class Main
         {
             const query = socket.handshake.query;
 
-            // if (query.client_type === "device")
-            {
-                // console.log(`DEVICE "${ query.device_id }" CONNECTED @ ${ socket.id }`);
-                console.log(`DEVICE "${ query.id }" ("${query.group?query.group:"all"}" group) CONNECTED @ ${ socket.id }`);
+            console.log(`DEVICE "${query.id}" ("${query.group ? query.group : "all"}" group) CONNECTED @ ${socket.id}`);
 
-                // this._devicesList.Add(query.device_id, socket);
-                this._devicesList.Add(query.id, query.group || "_no_group_", socket);
-            // }
+            this._devicesList.Add(query.id, query.group || "_no_group_", socket);
 
             socket.on('i-am-alive', (id, counter) => console.log('i-am-alive', id, counter));
 
             socket.on('reconnect_failed', (x) =>
             {
-                console.log('reconnect_failed', x); 
+                console.log('reconnect_failed', x);
             });
             socket.on('reconnect_error', (x) =>
             {
@@ -133,7 +125,7 @@ export class Main
                 this._devicesList.Remove(socket.id);
             });
         });
-      
+
         const port = this._env.ValueOrDefault('PORT', '5000');
         httpServer.listen(port, () => console.log('SERVER STARTED @ ' + port));
 

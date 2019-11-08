@@ -11,7 +11,7 @@ export class SocketClient
 
     }
 
-    public async Connect(): Promise<void>
+    public async Connect()
     {
         return new Promise((resolve, reject) =>
         {
