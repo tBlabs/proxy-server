@@ -33,22 +33,24 @@ export class ClientsManager
         this.devices.push(new SocketClient(id, group, new Date(), socket));
     }
 
-    public Send(id, msg): Promise<any>
+    public Send(id: string, msg: object): Promise<any>
     {
         return new Promise((resolve, reject) =>
         {
-            const device: SocketClient | undefined = this.devices.find(x => x.Id == id);
+            const device: SocketClient | undefined = this.devices.find(x => x.Id === id);
             if (device === undefined) 
             {
-                console.log(`Device "${id}" not found`);
-                reject(`Device "${ id }" not found`);
+                console.log(`Client "${id}" not found`);
+                reject(`Client "${ id }" not found`);
                 return;
             }
+
             device.Socket.once('result', (result) => 
             {
                 console.log('result', result);
                 resolve(result);
             });
+             
             device.Socket.emit('message', msg);
             console.log('Emitted');
         });
