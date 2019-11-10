@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "strict": true,
+    "jsx": "react",
+    "strictPropertyInitialization": false,
+    "strictFunctionTypes": false,
+    "noImplicitAny": true
+  }
+}

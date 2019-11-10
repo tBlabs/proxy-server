@@ -1,0 +1,75 @@
+{
+  "name": "react.ts-starter",
+  "version": "1.0.0",
+  "description": "Typescript with React, using Parcel bundler",
+  "main": "index.js",
+  "scripts": {
+    "serve": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html --public-url '/'",
+    "help": "parcel --help",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/config/test-shim.js",
+      "<rootDir>/config/test-setup.js"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/config/test-preprocessor.js"
+    },
+    "testMatch": [
+      "**/*.(test|spec).(ts|tsx|js)"
+    ]
+  },
+  "keywords": [
+    "Typescript",
+    "React",
+    "Parcel"
+  ],
+  "author": "tB",
+  "license": "beerware",
+  "dependencies": {
+    "@material-ui/core": "^4.5.0",
+    "@types/socket.io-client": "^1.4.32",
+    "axios": "^0.19.0",
+    "babel-polyfill": "^6.26.0",
+    "base64-url": "^2.2.0",
+    "base64url": "^2.0.0",
+    "inversify": "^4.11.1",
+    "inversify-inject-decorators": "^3.1.0",
+    "lodash": "^4.17.5",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^5.5.7",
+    "socket.io-client": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/enzyme": "^3.1.9",
+    "@types/jasmine": "^2.8.6",
+    "@types/jest": "^22.2.0",
+    "@types/lodash": "^4.14.106",
+    "@types/react": "^16.9.5",
+    "@types/react-dom": "^16.0.4",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^22.4.2",
+    "parcel-bundler": "^1.6.2",
+    "parcel-plugin-typescript": "^0.7.0",
+    "prettier": "^1.11.1",
+    "react-test-renderer": "^16.2.0",
+    "ts-jest": "^22.4.1",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.7.0",
+    "tslint-config-prettier": "^1.10.0",
+    "tslint-react": "^3.5.1",
+    "typescript": "^2.7.2"
+  }
+}
